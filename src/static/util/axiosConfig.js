@@ -1,5 +1,4 @@
 import axios from "axios";
-import { history } from "../../App.tsx";
 
 const API_URL = "https://ghubjobscorsproxy.herokuapp.com/https://jobs.github.com";
 const TIMEOUT = 10000;
@@ -9,6 +8,8 @@ const instance = axios.create({
     timeout: TIMEOUT,
     headers: { "Content-Type": "application/json" },
 });
+
+/*
 
 const isHandlerEnabled = (config = {}) => {
     return config.hasOwnProperty("handlerEnabled") && !config.handlerEnabled ? false : true;
@@ -54,5 +55,7 @@ export const setup = {
         );
     },
 };
+
+*/
 
 export default instance;
