@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { makeStyles, Theme, createStyles, Grid, Paper, Box } from "@material-ui/core";
+import { makeStyles, Theme, createStyles, Grid, Box } from "@material-ui/core";
 import { JobContext } from "../context/JobContextProvider";
-import { JobData } from "../static/interfaces/jsondatainterfaces";
+import { JobData } from "../../static/interfaces/jsondatainterfaces";
 import JobCard from "./JobCard";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme: Theme) =>
         control: {
             padding: theme.spacing(2),
         },
-        appBarSpacer: theme.mixins.toolbar,
     })
 );
 
@@ -27,7 +26,7 @@ const JobsContainer = (props: Props) => {
     const { jobList } = useContext(JobContext);
 
     return (
-        <Box component="div" my={4} className={classes.appBarSpacer}>
+        <Box component="div" my={4}>
             <Grid container className={classes.root} spacing={2}>
                 <Grid container justify="center" spacing={2}>
                     {jobList &&

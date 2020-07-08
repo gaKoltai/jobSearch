@@ -2,13 +2,14 @@ import React from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
-import { JobData } from "../static/interfaces/jsondatainterfaces";
-import { Button } from "@material-ui/core";
+import { JobData } from "../../static/interfaces/jsondatainterfaces";
+import { useHistory } from "react-router-dom";
+import StandardButton from "../misc/StandardButton";
+import { getDirectJobLink } from "../../static/util/util";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -16,8 +17,9 @@ const useStyles = makeStyles((theme: Theme) =>
             maxWidth: 400,
             minWidth: 400,
             minHeight: 200,
-            "&hover": {
+            "&:hover": {
                 cursor: "pointer",
+                boxShadow: ".125rem .125rem .25rem 0 rgba(0,0,0,.5)",
             },
         },
         media: {
@@ -43,6 +45,10 @@ const useStyles = makeStyles((theme: Theme) =>
         text: {
             fontSize: "0.8rem",
         },
+
+        title: {
+            color: "linear-gradient(90deg,#bc2560 0,transparent 70%)",
+        },
     })
 );
 
@@ -52,17 +58,21 @@ interface Props {
 
 const JobCard = (props: Props) => {
     const classes = useStyles();
+    const history = useHistory();
 
-    const getDirectJobLink = (linkWithNoise: string): string => {
-        return linkWithNoise.substring(linkWithNoise.indexOf('"') + 1, linkWithNoise.lastIndexOf('"'));
-    };
-
-    const redirectToApply = () => {
-        window.open(getDirectJobLink(props.job.how_to_apply), "_blank");
+    const redirect = (target: any) => {
+        target.classList.contains("redirect-btn") || target.parentElement.classList.contains("redirect-btn")
+            ? window.open(getDirectJobLink(props.job.how_to_apply), "_blank")
+            : history.push(`/job/${props.job.id}`);
     };
 
     return (
-        <Card className={classes.root}>
+        <Card
+            className={classes.root}
+            onClick={(event: any) => {
+                redirect(event.target);
+            }}
+        >
             <CardHeader
                 avatar={<Avatar aria-label="recipe" src={props.job.company_logo} className={classes.large}></Avatar>}
                 title={props.job.title}
@@ -74,15 +84,7 @@ const JobCard = (props: Props) => {
                 </Typography>
             </CardContent>
             <CardActions className={classes.actionMenu}>
-                <Button
-                    variant="outlined"
-                    color="secondary"
-                    onClick={() => {
-                        redirectToApply();
-                    }}
-                >
-                    Apply now
-                </Button>
+                <StandardButton onClick={redirect} helperClass={"redirect-btn"} />
             </CardActions>
         </Card>
     );

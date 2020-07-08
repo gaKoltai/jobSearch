@@ -2,9 +2,7 @@ import React, { Fragment } from "react";
 import JobsContainer from "./JobsContainer";
 import MainSearchTile from "./MainSearchTile";
 
-interface Props {}
-
-const LandingPage = (props: Props) => {
+const LandingPage = () => {
     return (
         <Fragment>
             <MainSearchTile />
