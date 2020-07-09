@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import JobsContainer from "./JobsContainer";
 import MainSearchTile from "./MainSearchTile";
 
