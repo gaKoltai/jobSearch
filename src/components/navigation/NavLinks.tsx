@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { MenuItem, makeStyles, Theme, createStyles } from "@material-ui/core";
 import { JobContext } from "../context/JobContextProvider";
+import { useLocation, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -33,8 +34,12 @@ interface Props {}
 const NavLinks = (props: Props) => {
     const classes = useStyles();
     const { listByJobType } = useContext(JobContext);
+    const location = useLocation();
+    const history = useHistory();
 
     const listJobsBy = (isFullTime: boolean, target: any) => {
+        if (location.pathname !== "/") history.push("/");
+
         listByJobType(isFullTime);
     };
 
