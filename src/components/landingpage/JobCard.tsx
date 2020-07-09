@@ -72,18 +72,20 @@ const JobCard = (props: Props) => {
             onClick={(event: any) => {
                 redirect(event.target);
             }}
+            data-testid="jobCard"
         >
             <CardHeader
                 avatar={<Avatar aria-label="recipe" src={props.job.company_logo} className={classes.large}></Avatar>}
                 title={props.job.title}
                 subheader={props.job.company}
+                data-testid="jobcardHeader"
             />
-            <CardContent className={classes.content}>
+            <CardContent className={classes.content} data-testid="jobCardContent">
                 <Typography className={classes.text}>
                     {props.job.location} | {props.job.type}
                 </Typography>
             </CardContent>
-            <CardActions className={classes.actionMenu}>
+            <CardActions className={classes.actionMenu} data-testid="jobcardBtn">
                 <StandardButton onClick={redirect} helperClass={"redirect-btn"} />
             </CardActions>
         </Card>

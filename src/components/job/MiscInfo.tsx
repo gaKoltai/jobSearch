@@ -29,9 +29,15 @@ const MiscInfo = (props: Props) => {
 
     return (
         <div className={classes.root}>
-            <Typography component="p">{props.company}</Typography>
-            <Typography component="p">{props.location}</Typography>
-            <Typography component="p">{props.type}</Typography>
+            <Typography component="p" data-testid="companyName">
+                {props.company}
+            </Typography>
+            <Typography component="p" data-testid="location">
+                {props.location}
+            </Typography>
+            <Typography component="p" data-testid="jobType">
+                {props.type}
+            </Typography>
         </div>
     );
 };

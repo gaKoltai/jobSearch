@@ -4,10 +4,10 @@ import MainSearchTile from "./MainSearchTile";
 
 const LandingPage = () => {
     return (
-        <Fragment>
+        <div data-testid="landingpage">
             <MainSearchTile />
             <JobsContainer />
-        </Fragment>
+        </div>
     );
 };
 

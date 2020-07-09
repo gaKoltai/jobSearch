@@ -33,7 +33,7 @@ const JobPage = (props: Props) => {
     };
 
     return (
-        <Box className={classes.root}>
+        <Box className={classes.root} data-testid="jobDetailsPage">
             <CompanyLogo logo={props.job.company_logo} />
             <JobTitle title={props.job.title} />
             <MiscInfo location={props.job.location} company={props.job.company} type={props.job.type} />

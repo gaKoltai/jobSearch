@@ -25,7 +25,7 @@ const CompanyLogo = (props: Props) => {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} data-testid="companyLogo">
             <img src={props.logo} alt="company logo"></img>
         </div>
     );

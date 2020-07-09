@@ -16,7 +16,15 @@ interface Props {
 const JobDetails = (props: Props) => {
     const classes = useStyles();
 
-    return <div className={classes.root} dangerouslySetInnerHTML={{ __html: props.description }}></div>;
+    /* Wouldn't normally use set inner html as to avoid running possible malicious scripts from the 3rd party site */
+
+    return (
+        <div
+            className={classes.root}
+            dangerouslySetInnerHTML={{ __html: props.description }}
+            data-testid="jobDetails"
+        ></div>
+    );
 };
 
 export default JobDetails;
