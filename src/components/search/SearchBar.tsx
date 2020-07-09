@@ -39,6 +39,14 @@ const SearchBar = () => {
 
     const search = (): void => {
         searchJobs(searchTerm);
+        setSearchTerm("");
+    };
+
+    const searchOnKeyDown = (event: any): void => {
+        if (event.keyCode === 13) {
+            searchJobs(searchTerm);
+            setSearchTerm("");
+        }
     };
 
     return (
@@ -66,6 +74,10 @@ const SearchBar = () => {
                 setSearchTerm(event.target.value);
             }}
             className={classes.root}
+            onKeyDown={(event: any) => {
+                searchOnKeyDown(event);
+            }}
+            value={searchTerm}
         />
     );
 };
